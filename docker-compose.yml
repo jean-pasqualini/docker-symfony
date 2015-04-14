@@ -1,0 +1,22 @@
+application:
+    image: symfony/code
+    volumes:
+        - symfony:/var/www/symfony
+        - logs/symfony:/var/www/symfony/app/logs
+    tty: true
+php:
+    image: symfony/php-fpm
+    expose:
+        - 9000:9000
+    volumes_from:
+        - application
+nginx:
+    image: symfony/nginx
+    ports:
+        - 80:80
+    links:
+        - php
+    volumes_from:
+        - application
+    volumes:
+        - logs/nginx/:/var/log/nginx

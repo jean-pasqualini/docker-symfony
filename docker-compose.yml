@@ -5,7 +5,7 @@ application:
         - logs/symfony:/var/www/symfony/app/logs
     tty: true
 db:
-    image: mysql
+    image: symfony/mysql
     ports:
         - 3306:3306
     environment:
